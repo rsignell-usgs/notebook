@@ -1,0 +1,6 @@
+* # blacklist everything
+!*/ #white list all directories
+./system-test #blacklist system-test
+./secoora   #blacklist secoora
+!*.ipynb   #white list ipynb files
+!*.py       # white list py files

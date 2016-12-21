@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+   <link rel="stylesheet" href="https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css">
+   <script src="https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js"></script>
+
+
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css">
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css">
+   <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
+
+   <link rel="stylesheet" href="http://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css">
+
+   
+   
+   
+   
+
+   <style>
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position:absolute;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+      }
+
+   </style>
+</head>
+
+<body>
+
+   <div class="folium-map" id="folium_a17506f98ee048e896e550641b4288b1" style="width: 750px; height: 500px"></div>
+
+   <script>
+
+      
+
+      var base_tile = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          minZoom: 1,
+          attribution: 'Map data (c) <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+      });
+
+      var baseLayer = {
+        "Base Layer": base_tile
+      };
+
+      /*
+      addition of the wms layers
+      */
+
+      
+
+      /*
+      addition of the tile layers
+      */
+      
+
+      /*
+      list of layers to be added
+      */
+      var layer_list = {
+      
+      };
+
+      /*
+      Bounding box.
+      */
+      var southWest = L.latLng(-90, -180),
+          northEast = L.latLng(90, 180),
+          bounds = L.latLngBounds(southWest, northEast);
+
+      /*
+      Creates the map and adds the selected layers
+      */
+      var map = L.map('folium_a17506f98ee048e896e550641b4288b1', {
+                                       center:[42.0, -70.5],
+                                       zoom: 7,
+                                       maxBounds: bounds,
+                                       layers: [base_tile]
+                                     });
+
+      L.control.layers(baseLayer, layer_list).addTo(map);
+
+      //cluster group
+      var clusteredmarkers = L.markerClusterGroup();
+      //section for adding clustered markers
+      
+      var marker_1_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_1 = L.marker([42.3724250793, 
+							-71.058265686],
+							{'icon':marker_1_icon}
+							);
+      marker_1.bindPopup("<b>Boston, MA</b>\nNECOFS");
+      marker_1._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_1)
+      
+      var marker_2_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_2 = L.marker([41.7054786682, 
+							-69.9514846802],
+							{'icon':marker_2_icon}
+							);
+      marker_2.bindPopup("<b>Chatham, MA</b>\nNECOFS");
+      marker_2._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_2)
+      
+      var marker_3_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_3 = L.marker([41.6708, 
+							-69.91997],
+							{'icon':marker_3_icon}
+							);
+      marker_3.bindPopup("<b>Chatham, MA</b>\nHYbrid");
+      marker_3._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_3)
+      
+      var marker_4_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_4 = L.marker([41.682333, 
+							-69.913522],
+							{'icon':marker_4_icon}
+							);
+      marker_4.bindPopup("<b>Chatham, MA</b>\nESTOFS");
+      marker_4._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_4)
+      
+      var marker_5_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_5 = L.marker([41.5279197693, 
+							-70.680480957],
+							{'icon':marker_5_icon}
+							);
+      marker_5.bindPopup("<b>Woods Hole, MA</b>\nNECOFS");
+      marker_5._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_5)
+      
+      var marker_6_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_6 = L.marker([41.5014962631, 
+							-70.6725499925],
+							{'icon':marker_6_icon}
+							);
+      marker_6.bindPopup("<b>Woods Hole, MA</b>\nCOAWST");
+      marker_6._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_6)
+      
+      var marker_7_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_7 = L.marker([41.487281, 
+							-70.672761],
+							{'icon':marker_7_icon}
+							);
+      marker_7.bindPopup("<b>Woods Hole, MA</b>\nESTOFS");
+      marker_7._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_7)
+      
+      var marker_8_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_8 = L.marker([41.5087013245, 
+							-71.3224258423],
+							{'icon':marker_8_icon}
+							);
+      marker_8.bindPopup("<b>Newport, RI</b>\nNECOFS");
+      marker_8._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_8)
+      
+      var marker_9_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_9 = L.marker([41.5350460417, 
+							-71.3358743905],
+							{'icon':marker_9_icon}
+							);
+      marker_9.bindPopup("<b>Newport, RI</b>\nCOAWST");
+      marker_9._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_9)
+      
+      var marker_10_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_10 = L.marker([41.4821150019, 
+							-71.3497549985],
+							{'icon':marker_10_icon}
+							);
+      marker_10.bindPopup("<b>Newport, RI</b>\nROMS");
+      marker_10._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_10)
+      
+      var marker_11_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_11 = L.marker([41.474475, 
+							-71.341956],
+							{'icon':marker_11_icon}
+							);
+      marker_11.bindPopup("<b>Newport, RI</b>\nESTOFS");
+      marker_11._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_11)
+      
+      var marker_12_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_12 = L.marker([41.7965621948, 
+							-71.3951568604],
+							{'icon':marker_12_icon}
+							);
+      marker_12.bindPopup("<b>Providence, RI</b>\nNECOFS");
+      marker_12._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_12)
+      
+      var marker_13_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_13 = L.marker([41.0721855164, 
+							-71.9729766846],
+							{'icon':marker_13_icon}
+							);
+      marker_13.bindPopup("<b>Montauk, NY</b>\nNECOFS");
+      marker_13._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_13)
+      
+      var marker_14_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_14 = L.marker([41.067188, 
+							-71.989277],
+							{'icon':marker_14_icon}
+							);
+      marker_14.bindPopup("<b>Montauk, NY</b>\nESTOFS");
+      marker_14._popup.options.maxWidth = 300;
+      clusteredmarkers.addLayer(marker_14)
+      
+      //add the clustered markers to the group anyway
+      map.addLayer(clusteredmarkers);
+
+      
+      var marker_15_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_15 = L.marker([42.3548, 
+							-71.0534],
+							{'icon':marker_15_icon}
+							);
+      marker_15.bindPopup("<div align='center'> Boston, MA <br><iframe src='station_8443970.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_15._popup.options.maxWidth = 600;
+      map.addLayer(marker_15)
+      
+      var marker_16_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_16 = L.marker([41.6885, 
+							-69.9511],
+							{'icon':marker_16_icon}
+							);
+      marker_16.bindPopup("<div align='center'> Chatham, MA <br><iframe src='station_8447435.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_16._popup.options.maxWidth = 600;
+      map.addLayer(marker_16)
+      
+      var marker_17_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_17 = L.marker([41.5233, 
+							-70.6717],
+							{'icon':marker_17_icon}
+							);
+      marker_17.bindPopup("<div align='center'> Woods Hole, MA <br><iframe src='station_8447930.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_17._popup.options.maxWidth = 600;
+      map.addLayer(marker_17)
+      
+      var marker_18_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_18 = L.marker([41.505, 
+							-71.3267],
+							{'icon':marker_18_icon}
+							);
+      marker_18.bindPopup("<div align='center'> Newport, RI <br><iframe src='station_8452660.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_18._popup.options.maxWidth = 600;
+      map.addLayer(marker_18)
+      
+      var marker_19_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_19 = L.marker([41.8071, 
+							-71.4012],
+							{'icon':marker_19_icon}
+							);
+      marker_19.bindPopup("<div align='center'> Providence, RI <br><iframe src='station_8454000.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_19._popup.options.maxWidth = 600;
+      map.addLayer(marker_19)
+      
+      var marker_20_icon = L.AwesomeMarkers.icon({ icon: 'ok-sign',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_20 = L.marker([41.0483, 
+							-71.96],
+							{'icon':marker_20_icon}
+							);
+      marker_20.bindPopup("<div align='center'> Montauk, NY <br><iframe src='station_8510560.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_20._popup.options.maxWidth = 600;
+      map.addLayer(marker_20)
+      
+      var marker_21_icon = L.AwesomeMarkers.icon({ icon: 'question-sign',markerColor: 'red',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_21 = L.marker([41.7043, 
+							-71.1641],
+							{'icon':marker_21_icon}
+							);
+      marker_21.bindPopup("<b>Station:</b> Fall River, MA<br><b>Datum:</b> MLLW<br>");
+      marker_21._popup.options.maxWidth = 300;
+      map.addLayer(marker_21)
+      
+      var marker_22_icon = L.AwesomeMarkers.icon({ icon: 'question-sign',markerColor: 'red',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_22 = L.marker([41.285, 
+							-70.0967],
+							{'icon':marker_22_icon}
+							);
+      marker_22.bindPopup("<b>Station:</b> Nantucket Island, MA<br><b>Datum:</b> MLLW<br>");
+      marker_22._popup.options.maxWidth = 300;
+      map.addLayer(marker_22)
+      
+      var marker_23_icon = L.AwesomeMarkers.icon({ icon: 'question-sign',markerColor: 'red',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_23 = L.marker([41.7167, 
+							-71.3433],
+							{'icon':marker_23_icon}
+							);
+      marker_23.bindPopup("<b>Station:</b> Conimicut Light, RI<br><b>Datum:</b> MLLW<br>");
+      marker_23._popup.options.maxWidth = 300;
+      map.addLayer(marker_23)
+      
+      var marker_24_icon = L.AwesomeMarkers.icon({ icon: 'ok',markerColor: 'green',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_24 = L.marker([42.9259, 
+							-70.7166],
+							{'icon':marker_24_icon}
+							);
+      marker_24.bindPopup("<div align='center'> Montauk, NY <br><iframe src='station_scituate_ma.html' alt='image'width='600px' height='275px' frameBorder='0'></div>");
+      marker_24._popup.options.maxWidth = 600;
+      map.addLayer(marker_24)
+      
+
+      
+
+      
+      var latLngs = [ [41.0, -72.0],  [41.0, -69.0],  [43.0, -69.0],  [43.0, -72.0],  [41.0, -72.0], ];
+var line_1 = L.polyline(latLngs,{
+color: '#FF0000',
+weight: 2,
+
+});
+      map.addLayer(line_1);
+      
+
+      
+
+      
+
+   </script>
+
+</body>

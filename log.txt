@@ -1,0 +1,122 @@
+10:38:47 INFO: *********************** Run information ************************
+10:38:47 INFO: Run date: 2015-01-27 13:38:47
+10:38:47 INFO: Download start: 2015-01-23 12:00:00
+10:38:47 INFO: Download stop: 2015-01-30 12:00:00
+10:38:47 INFO: Bounding box: -72.00, 41.00,-69.00, 43.00
+10:38:47 INFO: *********************** Software version ***********************
+10:38:47 INFO: Iris version: 1.7.2-DEV
+10:38:47 INFO: owslib version: 0.8-dev
+10:38:47 INFO: pyoos version: 0.6.2
+10:38:52 INFO: ********************* Catalog information **********************
+10:38:52 INFO: URL: http://www.ngdc.noaa.gov/geoportal/csw
+10:38:52 INFO: CSW version: 2.0.2
+10:38:52 INFO: Number of datasets available: 7
+10:38:52 INFO: ***************************** CSW ******************************
+10:38:52 INFO: NECOFS Massachusetts (FVCOM) - Massachusetts Coastal - Latest Forecast
+10:38:52 INFO: ROMS ESPRESSO Real-Time Operational IS4DVAR Forecast System Version 2 (NEW) 2013-present FMRC History (Best)
+10:38:52 INFO: NECOFS GOM3 (FVCOM) - Northeast US - Latest Forecast
+10:38:52 INFO: COAWST Forecast System : USGS : US East Coast and Gulf of Mexico (Experimental)
+10:38:52 INFO: Barotropic Tide Model for the Pacific Basin
+10:38:52 INFO: ESTOFS Storm Surge Model - Atlantic - v1.0.0 - NOAA - NCEP - ADCIRC
+10:38:52 INFO: HYbrid Coordinate Ocean Model (HYCOM): Global
+10:38:52 INFO: ***************************** DAP ******************************
+10:38:52 INFO: http://geoport-dev.whoi.edu/thredds/dodsC/estofs/atlantic.html
+10:38:52 INFO: http://geoport.whoi.edu/thredds/dodsC/coawst_4/use/fmrc/coawst_4_use_best.ncd.html
+10:38:52 INFO: http://oos.soest.hawaii.edu/thredds/dodsC/hioos/tide_pac.html
+10:38:52 INFO: http://oos.soest.hawaii.edu/thredds/dodsC/pacioos/hycom/global.html
+10:38:52 INFO: http://tds.marine.rutgers.edu/thredds/dodsC/roms/espresso/2013_da/his_Best/ESPRESSO_Real-Time_v2_History_Best_Available_best.ncd.html
+10:38:52 INFO: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_FVCOM_OCEAN_MASSBAY_FORECAST.nc.html
+10:38:52 INFO: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_GOM3_FORECAST.nc.html
+10:38:52 INFO: ***************************** SOS ******************************
+10:39:00 INFO: ********************* Collector offerings **********************
+10:39:00 INFO: NOAA.NOS.CO-OPS SOS: 1030 offerings
+10:39:01 INFO: Starting new HTTP connection (1): opendap.co-ops.nos.noaa.gov
+10:39:02 INFO: SOS URL request: http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos/SOS?eventTime=2015-01-23T12%3A00%3A00Z&service=SOS&offering=urn%3Aioos%3Anetwork%3ANOAA.NOS.CO-OPS%3AWaterLevelActive&request=GetObservation&version=1.0.0&responseFormat=text%2Fcsv&featureOfInterest=BBOX%3A-72.0%2C41.0%2C-69.0%2C43.0&observedProperty=water_surface_height_above_reference_datum
+10:39:11 INFO: ************************* Observations *************************
+10:39:11 INFO: ********** Downloading to file 2015-01-30-OBS_DATA.nc **********
+10:39:16 WARNING: [8447386] Fall River, MA:
+'Wrong Datum for this station: The correct Datum values are: MHHW, MHW, MTL, MSL, MLW, MLLW, STND'
+10:39:26 WARNING: [8449130] Nantucket Island, MA:
+'Wrong Datum for this station: The correct Datum values are: MHHW, MHW, MTL, MSL, MLW, MLLW, STND'
+10:39:32 WARNING: [8452944] Conimicut Light, RI:
+'Wrong Datum for this station: The correct Datum values are: MHHW, MHW, MTL, MSL, MLW, MLLW, STND'
+10:39:43 INFO: **************************** Models ****************************
+10:39:43 INFO: 
+[Reading url 1/7]: http://geoport-dev.whoi.edu/thredds/dodsC/estofs/atlantic
+10:41:31 INFO: 
+[Reading url 2/7]: http://geoport.whoi.edu/thredds/dodsC/coawst_4/use/fmrc/coawst_4_use_best.ncd
+10:42:36 INFO: 
+[Reading url 3/7]: http://oos.soest.hawaii.edu/thredds/dodsC/hioos/tide_pac
+10:42:48 INFO: 
+[Reading url 4/7]: http://oos.soest.hawaii.edu/thredds/dodsC/pacioos/hycom/global
+10:42:52 INFO: 
+[Reading url 5/7]: http://tds.marine.rutgers.edu/thredds/dodsC/roms/espresso/2013_da/his_Best/ESPRESSO_Real-Time_v2_History_Best_Available_best.ncd
+10:43:06 INFO: 
+[Reading url 6/7]: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_FVCOM_OCEAN_MASSBAY_FORECAST.nc
+10:43:28 INFO: 
+[Reading url 7/7]: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_GOM3_FORECAST.nc
+10:43:41 INFO: ************* Saving to file 2015-01-30-ESTOFS.nc **************
+10:43:41 WARNING: No data near (-71.0534, 42.3548) max_dist=0.04.
+10:43:46 INFO: [Water] Chatham, MA
+10:43:57 INFO: [Water] Woods Hole, MA
+10:44:07 INFO: [Water] Newport, RI
+10:44:07 WARNING: No data near (-71.4012, 41.8071) max_dist=0.04.
+10:44:18 INFO: [Water] Montauk, NY
+10:44:18 INFO: Finished processing [ESTOFS]: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_GOM3_FORECAST.nc
+10:44:18 INFO: ************** Saving to file 2015-01-30-ROMS.nc ***************
+10:44:21 INFO: [Land ] Boston, MA
+10:44:24 INFO: [Land ] Chatham, MA
+10:44:27 INFO: [Land ] Woods Hole, MA
+10:44:30 INFO: [Water] Newport, RI
+10:44:33 INFO: [Land ] Providence, RI
+10:44:36 INFO: [Land ] Montauk, NY
+10:44:39 INFO: Finished processing [ROMS]: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_GOM3_FORECAST.nc
+10:44:39 INFO: *********** Saving to file 2015-01-30-Barotropic.nc ************
+10:44:39 WARNING: No data near (-71.0534, 42.3548) max_dist=0.04.
+10:44:39 WARNING: No data near (-69.9511, 41.6885) max_dist=0.04.
+10:44:39 WARNING: No data near (-70.6717, 41.5233) max_dist=0.04.
+10:44:39 WARNING: No data near (-71.3267, 41.505) max_dist=0.04.
+10:44:39 WARNING: No data near (-71.4012, 41.8071) max_dist=0.04.
+10:44:39 WARNING: No data near (-71.96, 41.0483) max_dist=0.04.
+10:44:39 INFO: Finished processing [Barotropic]: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_GOM3_FORECAST.nc
+10:44:39 INFO: ************* Saving to file 2015-01-30-COAWST.nc **************
+10:44:48 INFO: [Land ] Boston, MA
+10:44:54 INFO: [Land ] Chatham, MA
+10:44:59 INFO: [Water] Woods Hole, MA
+10:45:11 INFO: [Water] Newport, RI
+10:45:17 INFO: [Land ] Providence, RI
+10:45:29 INFO: [Land ] Montauk, NY
+10:45:41 INFO: Finished processing [COAWST]: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_GOM3_FORECAST.nc
+10:45:41 INFO: ************* Saving to file 2015-01-30-HYbrid.nc **************
+10:45:45 INFO: [Land ] Boston, MA
+10:45:47 INFO: [Water] Chatham, MA
+10:45:47 WARNING: No data near (-70.6717, 41.5233) max_dist=0.04.
+10:45:51 INFO: [Land ] Newport, RI
+10:45:51 WARNING: No data near (-71.4012, 41.8071) max_dist=0.04.
+10:45:51 WARNING: No data near (-71.96, 41.0483) max_dist=0.04.
+10:45:51 INFO: Finished processing [HYbrid]: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_GOM3_FORECAST.nc
+10:45:51 INFO: ************* Saving to file 2015-01-30-NECOFS.nc **************
+10:46:05 INFO: [Water] Boston, MA
+10:46:19 INFO: [Water] Chatham, MA
+10:46:33 INFO: [Water] Woods Hole, MA
+10:46:47 INFO: [Water] Newport, RI
+10:47:00 INFO: [Water] Providence, RI
+10:47:16 INFO: [Water] Montauk, NY
+10:47:16 INFO: Finished processing [NECOFS]: http://www.smast.umassd.edu:8080/thredds/dodsC/FVCOM/NECOFS/Forecasts/NECOFS_GOM3_FORECAST.nc
+10:47:28 INFO: [Water] Scituate, MA
+10:47:28 WARNING: No data near (-70.7166, 42.9259) max_dist=0.04.
+10:47:28 WARNING: No data near (-70.7166, 42.9259) max_dist=0.04.
+10:47:42 INFO: [Water] Scituate, MA
+10:47:45 INFO: [Water] Scituate, MA
+10:47:59 INFO: [Water] Scituate, MA
+10:47:59 WARNING: No data near (-70.583883, 43.272411) max_dist=0.04.
+10:47:59 WARNING: No data near (-70.583883, 43.272411) max_dist=0.04.
+10:47:59 WARNING: No data near (-70.583883, 43.272411) max_dist=0.04.
+10:48:05 INFO: [Land ] Wells, ME
+10:48:05 WARNING: No data near (-70.583883, 43.272411) max_dist=0.04.
+10:48:05 WARNING: No data near (-70.583883, 43.272411) max_dist=0.04.
+10:48:05 WARNING: /home/filipe/miniconda/envs/SECOORA/lib/python2.7/site-packages/pandas/util/decorators.py:81: FutureWarning: the 'cols' keyword is deprecated, use 'subset' instead
+  warnings.warn(msg, FutureWarning)
+
+10:48:32 INFO: 9.76 minutes
+10:48:32 INFO: EOF
