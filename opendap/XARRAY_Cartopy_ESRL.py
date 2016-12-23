@@ -49,7 +49,27 @@ import cartopy.feature as cfeature
 
 # In[7]:
 
-# Create a feature for States/Admin 1 regions at 1:50m from Natural Earth
+# make a nice date string for titling the plot
+date_string = pd.Timestamp(ds_cut.time.data).strftime('%B %Y')
+
+
+# In[8]:
+
+# mask NaN values and convert Kelvin to Celcius
+t_c = np.ma.masked_invalid(ds_cut.air)-272.15
+
+
+# In[9]:
+
+# PlateCarree is rectilinear lon,lat
+data_crs = ccrs.PlateCarree()
+# Albers projection for the continental US
+plot_crs = ccrs.AlbersEqualArea(central_longitude=-96, central_latitude=23.)
+
+
+# In[10]:
+
+#Cartopy can use features from naturalearthdata.com
 states_provinces = cfeature.NaturalEarthFeature(
     category='cultural',
     name='admin_1_states_provinces_lines',
@@ -57,36 +77,16 @@ states_provinces = cfeature.NaturalEarthFeature(
     facecolor='none')
 
 
-# In[8]:
-
-# make a nice date string for titling the plot
-date_string = pd.Timestamp(ds_cut.time.data).strftime('%B %Y')
-
-
-# In[9]:
-
-# mask NaN values and convert Kelvin to Celcius
-t_c = np.ma.masked_invalid(ds_cut.air)-272.15
-
-
-# In[10]:
-
-# Albers projection for the continental US
-crs1 = ccrs.AlbersEqualArea(central_longitude=-96, central_latitude=23.)
-# The data is lon/lat
-crs2 = ccrs.PlateCarree()
-
-
 # In[11]:
 
 # plot using Cartopy
 # using Albers projection with coastlines, country and state borders
 fig = plt.figure(figsize=(12,8))
-ax = plt.axes(projection=crs1)
-mesh = ax.pcolormesh(ds_cut.lon, ds_cut.lat, t_c, transform=crs2, zorder=0, vmin=-10, vmax=30)
+ax = plt.axes(projection=plot_crs)
+mesh = ax.pcolormesh(ds_cut.lon, ds_cut.lat, t_c, transform=data_crs, zorder=0, vmin=-10, vmax=30)
 fig.colorbar(mesh)
 ax.add_feature(cfeature.COASTLINE)
 ax.add_feature(cfeature.BORDERS)
 ax.add_feature(states_provinces, edgecolor='gray')
-plt.title('{}: {}'.format(dvar.long_name, date_string));
+ax.set_title('{}: {}'.format(dvar.long_name, date_string));
 
