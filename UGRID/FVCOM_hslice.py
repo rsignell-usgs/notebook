@@ -55,21 +55,25 @@ var
 
 # In[7]:
 
+# calculate the 3D z values using formula terms by specifying this derived vertical coordinate
+# with a terrible name 
 z3d = var.coord('sea_surface_height_above_reference_ellipsoid').points
-var3d = var.data
 
 
 # In[8]:
 
-
-
-z0 = -25
-isoslice = zslice(var3d, z3d, z0)
+# read the 3D chuck of data
+var3d = var.data
 
 
 # In[9]:
 
+# specify depth for fixed z slice
+z0 = -25
+isoslice = zslice(var3d, z3d, z0)
 
+
+# In[10]:
 
 # For some reason I cannot tricontourf with NaNs.
 isoslice = ma.masked_invalid(isoslice)
@@ -77,11 +81,7 @@ vmin, vmax = isoslice.min(), isoslice.max()
 isoslice = isoslice.filled(fill_value=-999)
 
 
-# In[10]:
-
-
-
-cmap = plt.cm.viridis
+# In[11]:
 
 def make_map(projection=ccrs.PlateCarree()):
     fig, ax = plt.subplots(figsize=(9, 13),
@@ -94,10 +94,9 @@ def make_map(projection=ccrs.PlateCarree()):
     return fig, ax
 
 
-# In[11]:
+# In[12]:
 
-
-
+# use UGRID conventions to locate lon,lat and connectivity array
 ugrid = pyugrid.UGrid.from_ncfile(url)
 
 lon = ugrid.nodes[:, 0]
@@ -107,7 +106,7 @@ triangles = ugrid.faces[:]
 triang = tri.Triangulation(lon, lat, triangles=triangles)
 
 
-# In[12]:
+# In[13]:
 
 fig, ax = make_map()
 extent = [lon.min(), lon.max(),
@@ -116,7 +115,7 @@ ax.set_extent(extent)
 
 levels = np.linspace(vmin, vmax, 20)
 
-kw = dict(cmap='jet', alpha=0.9, levels=levels)
+kw = dict(cmap='jet', alpha=1.0, levels=levels)
 cs = ax.tricontourf(triang, isoslice, **kw)
 kw = dict(shrink=0.5, orientation='vertical')
 cbar = fig.colorbar(cs, **kw)
