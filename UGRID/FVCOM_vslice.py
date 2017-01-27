@@ -130,25 +130,25 @@ dist = sw.dist(xi, yi, 'km')[0].cumsum()
 dist = np.insert(dist, 0, 0)
 
 
-# In[15]:
+# In[ ]:
 
 # grab a 3D chunk of data at a specific time step
 t3d = cube[-1, ...].data
 
 
-# In[16]:
+# In[ ]:
 
 # this uses the CF formula terms to compute the z positions in the vertical
 z3d = cube[-1, ...].coord('sea_surface_height_above_reference_ellipsoid').points
 
 
-# In[17]:
+# In[ ]:
 
 # this uses the CF formula terms to compute the z positions in the vertical
 #z3d = [z for z in cube[-1,...].coords(axis='z') if z.units.is_convertible(cf_units.Unit('m'))][0].points
 
 
-# In[18]:
+# In[ ]:
 
 def interpolate(triang, xi, yi, data, trifinder=None):
     import matplotlib.tri as mtri
@@ -165,11 +165,11 @@ zi = interpolate(triang, xi, yi, t3d, trifinder=trifinder)
 di = interpolate(triang, xi, yi, z3d, trifinder=trifinder)
 
 
-# In[19]:
+# In[ ]:
 
 fig, ax = plt.subplots(figsize=(11, 3))
-im = ax.pcolormesh(dist, di, zi)
-fig.colorbar(im, orientation='vertical')
+im = ax.pcolormesh(dist, di, zi, shading='gouraud', cmap='jet')
+fig.colorbar(im, orientation='vertical');
 
 
 # In[ ]:
