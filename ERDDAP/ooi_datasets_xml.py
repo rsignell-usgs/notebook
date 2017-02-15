@@ -4,7 +4,7 @@
 # # Create ERDDAP dataset.xml from NetCDF file
 # Create an ERDDAP <dataset> snippet by reading a NetCDF CF-1.6 DSG **`featureType=TimeSeries`** file
 
-# In[7]:
+# In[1]:
 
 import numpy as np
 import netCDF4
@@ -16,7 +16,7 @@ from jinja2 import Environment, FileSystemLoader
 env = Environment(loader=FileSystemLoader('templates'))
 
 
-# In[8]:
+# In[2]:
 
 # generate random 12 digit string for DatasetID
 def random_name():
@@ -25,14 +25,14 @@ def random_name():
     return rstr
 
 
-# In[9]:
+# In[3]:
 
 print(random_name())
 
 
 # ERDDAP Valid values are: double (64-bit floating point), float (32-bit floating point), long (64-bit signed integer), int (32-bit signed integer), short (16-bit signed integer), byte (8-bit signed integer), char (essentially: 16-bit unsigned integer), boolean, and String (any length).
 
-# In[10]:
+# In[4]:
 
 dmap = {'float64':'double',
         'float32':'float',
@@ -47,7 +47,7 @@ dmap = {'float64':'double',
         'string':'String'}
 
 
-# In[11]:
+# In[5]:
 
 def dvar_info(nc, dmap=None):
     # Assign sourceName:[destinationName, ioos_category, dataType, colorBarMinimum, colorBarMaximum]
@@ -101,7 +101,7 @@ def dvar_info(nc, dmap=None):
     return dvars
 
 
-# In[12]:
+# In[6]:
 
 opath = '/usgs/data2/notebook/data/xml'
 ncpath = '/sand/usgs/users/rsignell/data/ooi/endurance/nc/*.nc'
@@ -110,10 +110,10 @@ for ncfile in glob.glob(ncpath):
     path, filename = os.path.split(path)
     print(ncfile)
     fileDir = path
-    datasetID = filename.split('.')[0]+random_name()
+    datasetID = filename.split('.')[0]   #+random_name()
     reloadEveryNMinutes = '10080'
     fileNameRegex = filename
-    subsetVariables = 'latitude, longitude'
+    subsetVariables = 'latitude, longitude, altitude, feature_type_instance'
     infoUrl = 'https://stellwagen.er.usgs.gov/'
     cdm_timeseries_variables = subsetVariables
     # open a NetCDF CF-1.6+, DSG featureType=timeSeries file
