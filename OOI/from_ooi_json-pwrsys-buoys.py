@@ -35,7 +35,7 @@ global_attributes = {
 'summary':'OOI data from Coastal Endurance',
 'creator_name':'Chris Wingard',
 'creator_email':'cwingard@coas.oregonstate.edu',
-'creator_url':'http://ceoas.oregonstate.edu/ooi'
+'creator_url':'http://ceoas.oregonstate.edu/ooi',
 }
 
 
@@ -56,24 +56,16 @@ for buoy in buoys.keys():
     deployment = deployment_path.split('/')[-1]
     path = os.path.join(deployment_path,'buoy',var,'*.{}.json'.format(var))
     ofile = '{}_{}_{}.nc'.format(buoy,var,deployment)
-    print(path)
-    df = pd.concat([json2df(file) for file in glob.glob(path)])  
-    df['time'] = pd.to_datetime(df.time, unit='s')
-    df.index = df['time']
-#    df['z'] = buoys[buoy]['z']
 
-    global_attributes['title']='OOI Endurance Data:{}:{}'.format(buoy,var)
-    
-    ts = TimeSeries(output_directory=odir,
-        latitude=buoys[buoy]['lat'],
-        longitude=buoys[buoy]['lon'],
-        station_name=buoy,
-        global_attributes=global_attributes,
-        times=df.time.values.astype(np.int64) // 10**9,
-        verticals=buoys[buoy]['z'],
-        output_filename=ofile,
-        vertical_positive='up'
-        )
+    df = pd.concat([json2df(file) for file in glob.glob(path)])  
+
+    df['time'] = pd.to_datetime(df.time, unit='s'); df.index = df['time']
+    global_attributes['title']='OOI Endurance Data:{}:{}'.format(buoy,var)   
+
+    ts = TimeSeries(output_directory=odir, latitude=buoys[buoy]['lat'],
+            longitude=buoys[buoy]['lon'], station_name=buoy, global_attributes=global_attributes,
+            times=df.time.values.astype(np.int64) // 10**9, verticals=buoys[buoy]['z'],
+            output_filename=ofile, vertical_positive='up')
     
     print(ofile)
     df.columns.tolist();
@@ -89,7 +81,6 @@ for buoy in buoys.keys():
             continue
         print("Adding {}".format(c))
         ts.add_variable(c, df[c].values)
-
 
 
 # In[ ]:

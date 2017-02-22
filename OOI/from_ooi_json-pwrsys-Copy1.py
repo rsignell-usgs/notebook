@@ -10,40 +10,46 @@ get_ipython().magic('matplotlib inline')
 import json
 import pandas as pd
 import numpy as np
+import glob
 
 from pyaxiom.netcdf.sensors import TimeSeries
 
 
 # In[2]:
 
-infile = '/usgs/data2/notebook/data/20170130.superv.json'
-infile = '/sand/usgs/users/rsignell/data/ooi/endurance/cg_proc/ce02shsm/D00004/buoy/pwrsys/20170208.pwrsys.json'
-
-outfile = '/usgs/data2/notebook/data/20170208.pwrsys.nc'
-with open(infile) as jf:
-    js = json.load(jf)
-    df = pd.DataFrame({})
-    for k, v in js.items():
-        df[k] = v
-    df['time'] = pd.to_datetime(df.time, unit='s')
-    df['depth'] = 0.
-df.head()
+def json2df(infile):
+    with open(infile) as jf:
+        df = pd.DataFrame(json.load(jf))
+        df['time'] = pd.to_datetime(df.time, unit='s')
+        return df
 
 
 # In[3]:
 
-df['solar_panel4_voltage'].plot();
+path = '/sand/usgs/users/rsignell/data/ooi/endurance/cg_proc/ce02shsm/D00004/buoy/pwrsys/*.pwrsys.json'
+odir = '/usgs/data2/notebook/data/nc'
+ofile = 'ce02shsm_pwrsys_D00004.nc'
 
 
 # In[4]:
 
+df = pd.concat([json2df(file) for file in glob.glob(path)])
+
+
+# In[5]:
+
+df['depth'] = 0.0
 df.index = df['time']
+
+
+# In[6]:
+
 df['solar_panel4_voltage'].plot();
 
 
 # ### Define the NetCDF global attributes
 
-# In[5]:
+# In[7]:
 
 global_attributes = {
     'institution':'Oregon State University', 
@@ -57,46 +63,26 @@ global_attributes = {
 
 # ### Create initial file
 
-# In[6]:
+# In[9]:
 
 ts = TimeSeries(
-    output_directory='.',
+    output_directory=odir,
     latitude=44.64,
     longitude=-124.31,
     station_name='ce02shsm',
     global_attributes=global_attributes,
     times=df.time.values.astype(np.int64) // 10**9,
     verticals=df.depth.values,
-    output_filename=outfile,
+    output_filename=ofile,
     vertical_positive='down'
 )
 
 
 # ### Add data variables
 
-# In[7]:
-
-df.columns.tolist()
-
-
-# In[8]:
-
-# create a dictionary of variable attributes
-atts = {
-        'main_current':{'units':'volts', 'long_name':'main current'},
-        'solar_panel3_voltage':{'units':'volts', 'long_name':'solar panel 3 voltage'}
-       }
-
-
-# In[9]:
-
-print(atts.get('main_current'))
-
-
 # In[10]:
 
-# if we ask for a key that doesn't exist, we get a value of "None"
-print(atts.get('foobar'))
+df.columns.tolist()
 
 
 # In[11]:
@@ -108,39 +94,12 @@ for c in df.columns:
     if c in ['time', 'lat', 'lon', 'depth', 'cpm_date_time_string']:
         print("Skipping axis '{}' (already in file)".format(c))
         continue
-    if 'object' in df[c].dtype.name: 
-        print("Skipping object {}".format(c))
-        continue
-        
     print("Adding {}".format(c))
-    # add variable values and variable attributes here
-    ts.add_variable(c, df[c].values, attributes=atts.get(c))
-
-
-# In[12]:
-
-df['error_flag3'][0]
-
-
-# In[13]:
-
-ts.ncd
-
-
-# In[14]:
-
-import netCDF4
-nc = netCDF4.Dataset(outfile)
-
-
-# In[15]:
-
-nc['main_current']
-
-
-# In[16]:
-
-nc.close()
+    try:
+        ts.add_variable(c, df[c].values)
+    except:
+        print('skipping, hit object')
+        
 
 
 # In[ ]:

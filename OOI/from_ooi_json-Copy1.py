@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# # Convert OOI Parsed pwrsys JSON to NetCDF file
+# # Convert OOI Parsed JSON to NetCDF file
 # using CF-1.6, Discrete Sampling Geometry (DSG) conventions, **`featureType=timeSeries`**
 
 # In[1]:
@@ -79,27 +79,7 @@ ts = TimeSeries(
 df.columns.tolist()
 
 
-# In[8]:
-
-# create a dictionary of variable attributes
-atts = {
-        'main_current':{'units':'volts', 'long_name':'main current'},
-        'solar_panel3_voltage':{'units':'volts', 'long_name':'solar panel 3 voltage'}
-       }
-
-
-# In[9]:
-
-print(atts.get('main_current'))
-
-
 # In[10]:
-
-# if we ask for a key that doesn't exist, we get a value of "None"
-print(atts.get('foobar'))
-
-
-# In[11]:
 
 for c in df.columns:
     if c in ts._nc.variables:
@@ -108,39 +88,56 @@ for c in df.columns:
     if c in ['time', 'lat', 'lon', 'depth', 'cpm_date_time_string']:
         print("Skipping axis '{}' (already in file)".format(c))
         continue
-    if 'object' in df[c].dtype.name: 
-        print("Skipping object {}".format(c))
-        continue
-        
     print("Adding {}".format(c))
-    # add variable values and variable attributes here
-    ts.add_variable(c, df[c].values, attributes=atts.get(c))
+    try:
+        ts.add_variable(c, df[c].values)
+    except:
+        print('skipping, hit object')
+        
 
 
-# In[12]:
+# In[ ]:
 
 df['error_flag3'][0]
 
 
-# In[13]:
+# ### Open the NetCDF file and inspect it
 
-ts.ncd
-
-
-# In[14]:
+# In[ ]:
 
 import netCDF4
 nc = netCDF4.Dataset(outfile)
 
 
-# In[15]:
+# In[ ]:
 
-nc['main_current']
+nc
 
 
-# In[16]:
+# In[ ]:
 
 nc.close()
+
+
+# In[ ]:
+
+import netCDF4
+nc = netCDF4.Dataset(outfile)
+
+
+# In[ ]:
+
+nc['z']
+
+
+# In[ ]:
+
+nc['crs']
+
+
+# In[ ]:
+
+nc['iridium_current']
 
 
 # In[ ]:
