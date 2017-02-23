@@ -130,16 +130,19 @@ df
 
 get_ipython().magic('matplotlib inline')
 import matplotlib.pyplot as plt
-import matplotlib.ticker as mticker
 import cartopy.crs as ccrs
-from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+from cartopy.feature import NaturalEarthFeature
 
+bathym_1000 = NaturalEarthFeature(name='bathymetry_J_1000',
+                                  scale='10m', category='physical')
 
 fig, ax = plt.subplots(
     figsize=(9, 9),
     subplot_kw=dict(projection=ccrs.PlateCarree())
 )
 ax.coastlines(resolution='10m')
+ax.add_feature(bathym_1000, facecolor=[0.9, 0.9, 0.9], edgecolor='none')
+
 dx = dy = 0.5
 ax.set_extent([lon_min-dx, lon_max+dx, lat_min-dy, lat_max+dy])
 

@@ -71,7 +71,7 @@ url = base(
 print(url)
 
 
-# In[16]:
+# In[5]:
 
 dft = pd.read_csv(url, usecols=['Title', 'Summary', 'Institution', 'Dataset ID'])  
 print('Glider Datasets Found = {}'.format(len(dft)))
@@ -103,23 +103,23 @@ def download_df(glider_id):
     return df
 
 
-# In[13]:
+# In[7]:
 
 # concatenate the dataframes for each dataset into one single dataframe   
 df = pd.concat(list(map(download_df, dft['Dataset ID'].values)))
 
 
-# In[14]:
+# In[8]:
 
 print('Total Data Values Found: {}'.format(len(df)))
 
 
-# In[10]:
+# In[9]:
 
 df.head()
 
 
-# In[11]:
+# In[10]:
 
 df.tail()
 
@@ -131,12 +131,15 @@ df.tail()
 get_ipython().magic('matplotlib inline')
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
-
+from cartopy.feature import NaturalEarthFeature
+bathym_1000 = NaturalEarthFeature(name='bathymetry_J_1000',
+                                  scale='10m', category='physical')
 fig, ax = plt.subplots(
     figsize=(9, 9),
     subplot_kw=dict(projection=ccrs.PlateCarree())
 )
 ax.coastlines(resolution='10m')
+ax.add_feature(bathym_1000, facecolor=[0.9, 0.9, 0.9], edgecolor='none')
 dx = dy = 0.5
 ax.set_extent([lon_min-dx, lon_max+dx, lat_min-dy, lat_max+dy])
 
@@ -148,4 +151,9 @@ for glider in g.groups:
 gl = ax.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
                   linewidth=2, color='gray', alpha=0.5, linestyle='--')
 ax.legend();
+
+
+# In[ ]:
+
+
 
